@@ -14,6 +14,17 @@ app.listen( port, ()=>{
 })
 
 //do things via routes
+//Get books from database
+app.get( '/books', ( req, res )=>{
+    const queryString = 'SELECT * FROM book_inventory';
+
+    pool.query( queryString ).then( ( results )=>{
+        res.send( results.rows );
+    }).catch( ( err )=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})
 //Get genres from database and load into list on screen
 app.get( '/genres', ( req, res )=>{
     const queryString = 'SELECT * FROM book_genres';
@@ -33,6 +44,18 @@ app.get( '/ratings', ( req, res)=>{
     pool.query( queryString ).then( ( results )=>{
         res.send( results.rows );
     }).catch( (err )=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})
+//Add book to book_inventory table in database
+app.post( '/books', ( req, res )=>{
+    const queryString = `INSERT INTO book_inventory ( title, author, genre, rating )
+    VALUES ( '${req.body.title}', '${req.body.author}', '${req.body.genre}', '${req.body.rating}' );`
+
+    pool.query( queryString ).then( ( results )=>{
+        res.sendStatus( 200 );
+    }).catch( ( err )=>{
         console.log( err );
         res.sendStatus( 500 );
     })
