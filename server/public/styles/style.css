@@ -1,0 +1,12 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(235, 232, 232);
+}
+#inputDiv {
+    display: flex;
+    flex-direction: column;
+    max-width: 20em;
+}
+input, select {
+    margin-bottom: 4px;
+}

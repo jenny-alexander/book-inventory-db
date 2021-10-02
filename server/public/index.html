@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Inventory</title>
+    <script src="vendors/jquery-3.6.0.min.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <h1>Let's keep track of our books!</h1>
+    <div id="mainDiv">
+        <div id="inputDiv">
+            <input type="text" id="bookTitle" placeholder="Title">
+            <input type="text" id="bookAuthor" placeholder="Author">
+            <select required name="genres" id="bookGenres" >
+                <option value="" disabled selected>Select a genre...</option>
+            </select>
+            <select required name="rating" id="bookRatings" >
+                <option value="" disabled selected>Select a rating...</option>
+            </select>
+            <!-- <input type="text" id="bookRating" placeholder="Rating"> -->
+            <!-- <input type="text" id="bookGenre" placeholder="Genre"> -->
+            <button id="addBook">Add book!</button>
+        </div>
+        <div id="outputDid">
+            <ul id="bookList"></ul>
+        
+        
+        </div>
+    </div>
+</body>
+</html>
