@@ -1,8 +1,6 @@
 $ (document ).ready( onReady );
 
 //globals
-let genres = [];
-let ratings = [];
 let books = [];
 
 function onReady() {
@@ -10,6 +8,7 @@ function onReady() {
     getBooks();
     getBookGenres();
     getBookRatings();
+    $( '#addBookButton' ).on( 'click', addBook );
 }
 function getBooks() {
     $.ajax({
@@ -17,13 +16,13 @@ function getBooks() {
         url: '/books'
     }).then( function( response ) {
         //target the <ul> DOM element and add a list to it
-        console.log( `response from GET /books is:`, response );
         let bookList = $( '#bookList' );
         bookList.empty();
         for ( let i = 0; i < response.length; i++ ) {
             //console.log( 'book title is:', response[i].title)
             bookList.append(
-                 `<li data-id='${response[i].id}'>${response[i].title} by ${response[i].author}</li>`
+                 `<li data-id='${response[i].id}'>${response[i].title} by ${response[i].author}
+                 <button>Remove</button></li>`
             );
         }
     }).catch( function( err ){
@@ -37,7 +36,6 @@ function getBookGenres() {
         method: 'GET',
         url: '/genres'
     }).then( function( response ){
-        console.log( 'back from genres table with:', response );
         fillGenresList( response );
     }).catch( function( err ){
         console.log( err );
@@ -50,11 +48,10 @@ function getBookRatings() {
         method: 'GET',
         url: '/ratings'
     }).then( function( response ){
-        console.log( 'back from ratings table with:', response );
         fillRatingsList( response );
     }).catch( function( err ) {
         console.log( err );
-        alert( 'oops' );
+        alert( 'error getting books' );
     })
 }
 function fillGenresList( response ) {
@@ -73,3 +70,24 @@ function fillRatingsList( response ) {
         elList.append(`<option data-id="${response[i].id}">${response[i].rating}</option> `)
     }
 }
+function addBook() {
+    let objectToSend = {
+        title: $( '#bookTitle' ).val(),
+        author: $( '#bookAuthor' ).val(),
+        genre: $( '#bookGenre' ).val(),
+        rating: $( '#bookRating' ).val()
+    }
+    //send the book object to the DB
+    $.ajax({
+        method: 'POST',
+        url: '/books',
+        data: objectToSend
+    }).then( function( response ){
+        //update the DOM
+        getBooks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'error adding book' );
+    })
+}
+//delete book from books_inventory on database
