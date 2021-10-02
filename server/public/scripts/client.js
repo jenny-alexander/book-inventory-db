@@ -16,17 +16,28 @@ function getBookGenres() {
         url: '/genres'
     }).then( function( response ){
         console.log( 'back from genres table with:', response );
-        fillGenresList( response );
+        fillList( response, 'bookGenres')
     }).catch( function( err ){
         console.log( err );
-        alert( `oops` );
+        alert( 'oops' );
     })
 }
-function fillGenresList( response ) {
+function getBookRatings() {
+    $.ajax({
+        method: 'GET',
+        url: '/ratings'
+    }).then( function( response ){
+        console.log( 'back from ratings table with:', response );
+    }).catch( function( err ) {
+        console.log( err );
+        alert( 'oops' );
+    })
+}
+function fillList( response, targetElement ) {
     //target DOM <select> element for genres
-    let genres = $( '#bookGenres' );
-    genres.empty();
+    let elList = $( `#${targetElement}` );
+    elList.empty();
     for ( let i = 0; i < response.length; i ++ ) {
-        genres.append(`<option data-id="${response[i].id}">${response[i].genre}</option> `)
+        elList.append(`<option data-id="${response[i].id}">${response[i].genre}</option> `)
     }
 }
