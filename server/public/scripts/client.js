@@ -74,9 +74,10 @@ function addBook() {
     let objectToSend = {
         title: $( '#bookTitle' ).val(),
         author: $( '#bookAuthor' ).val(),
-        genre: $( '#bookGenre' ).val(),
-        rating: $( '#bookRating' ).val()
+        genre: $( '#bookGenres' ).val(),
+        rating: $( '#bookRatings' ).val()
     }
+    console.log( `in addBook and objectToSend is:`, objectToSend );
     //send the book object to the DB
     $.ajax({
         method: 'POST',

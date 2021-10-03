@@ -50,10 +50,18 @@ app.get( '/ratings', ( req, res)=>{
 })
 //Add book to book_inventory table in database
 app.post( '/books', ( req, res )=>{
+    console.log( `in post` );
     const queryString = `INSERT INTO book_inventory ( title, author, genre, rating )
-    VALUES ( '${req.body.title}', '${req.body.author}', '${req.body.genre}', '${req.body.rating}' );`
-
-    pool.query( queryString ).then( ( results )=>{
+    VALUES ( $1, $2, $3, $4 )`;
+    //sanitize the data with array
+    let values = [ req.body.title,
+                   req.body.author,
+                   req.body.genre,
+                   req.body.rating 
+                ];
+                console.log( `values are:`, values );
+// VALUES ( '${req.body.title}', '${req.body.author}', '${req.body.genre}', '${req.body.rating}' );`
+    pool.query( queryString, values ).then( ( results )=>{
         res.sendStatus( 200 );
     }).catch( ( err )=>{
         console.log( err );
