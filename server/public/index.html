@@ -8,11 +8,12 @@
     <script src="vendors/jquery-3.6.0.min.js"></script>
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
+<div class="container">
 <body>
-    <h1>Let's keep track of our books!</h1>
-    <div id="mainDiv">
-        <div id="inputDiv">
+        <h2>A Bunch of Books</h2>
+        <div class="inputDiv">
             <input type="text" id="bookTitle" placeholder="Title">
             <input type="text" id="bookAuthor" placeholder="Author">
             <select required name="genres" id="bookGenres" >
@@ -23,9 +24,27 @@
             </select>
             <button id="addBookButton">Add book!</button>
         </div>
-        <div id="outputDid">
+            
+        <div class="outputDiv">
             <ul id="bookList"></ul>
         </div>
-    </div>
+        
+        <!-- put output in a table instead of a list-->
+        <table id="bookTable">
+            <thead id="bookTableHeader">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="bookTableBody">
+            </tbody>
+        </table>
+        
 </body>
+</div>
 </html>
+

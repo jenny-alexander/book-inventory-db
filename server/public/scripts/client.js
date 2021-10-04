@@ -15,15 +15,17 @@ function getBooks() {
         method: 'GET',
         url: '/books'
     }).then( function( response ) {
-        //target the <ul> DOM element and add a list to it
-        let bookList = $( '#bookList' );
-        bookList.empty();
+        //target the <table> body DOM element
+        let bookBody = $( '#bookTableBody' );
+        bookBody.empty();
         for ( let i = 0; i < response.length; i++ ) {
             //console.log( 'book title is:', response[i].title)
-            bookList.append(
-                 `<li data-id='${response[i].id}'>${response[i].title} by ${response[i].author}
-                 <button>Remove</button></li>`
-            );
+            bookBody.append(
+                 `<tr><td data-id='${response[i].id}'>${response[i].title}</td>
+                 <td>${response[i].author}</td>
+                 <td>${response[i].genre}</td>
+                 <td>${response[i].rating}</td>
+                 <td><button>Remove book</button></td></tr>`);
         }
     }).catch( function( err ){
         console.log( err );

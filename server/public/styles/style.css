@@ -1,13 +1,35 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(235, 232, 232);
+    font-family: 'Montserrat', monospace;
+    /* font-size: 22px; */
+    /* background-color: rgb(241, 238, 238); */
+    padding-left: 5px;
+    border: solid black 1px;
 }
-#mainDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-li {
-    margin-bottom: 5px;
+.inputDiv {
+    width: 70%;
 }
 
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+#bookTable{
+    margin-right: 5px;
+}
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+  /* Zebra striping */
+  tr:nth-of-type(odd) { 
+    background: #eee; 
+  }
+  th { 
+    background: #333; 
+    color: white; 
+    font-weight: bold; 
+  }
+  td, th { 
+    padding: 6px; 
+    border: 1px solid #ccc; 
+    text-align: left; 
+  }
